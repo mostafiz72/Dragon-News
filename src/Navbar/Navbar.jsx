@@ -5,7 +5,7 @@ import { AuthContext } from '../Components/Provider/AuthProvider';
 
 export default function Navbar() {
   const { user, singOut } = useContext(AuthContext)
-  console.log(import.meta.env.VITE_a);
+  // console.log(import.meta.env.VITE_a);
   
   return (
     <>
@@ -24,7 +24,7 @@ export default function Navbar() {
               {user && user.email? <img className=' w-10 h-10 rounded-full' src={user.photoURL} alt="" /> : <img src={profileLogo} alt="" />} 
             </div>
             {
-              user && user.email?
+              user?
               <button onClick={singOut} className=' btn btn-accent cursor-pointer'>Log-Out</button>
               :
               <div><Link to="/login" className=' btn btn-accent cursor-pointer'>Login</Link></div>

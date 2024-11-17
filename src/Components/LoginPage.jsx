@@ -8,7 +8,7 @@ export default function LoginPage() {
    const { userLogin, setUser } = useContext(AuthContext)
    const location = useLocation();
    const Navigate = useNavigate();
-   console.log(location);
+//    console.log(location);
    
     const [show, setShow] = useState(false);
 
@@ -22,7 +22,7 @@ export default function LoginPage() {
         const form = new FormData(e.target);  // Nutun vabe input form thek data neuya jai ta amara dekhalam
         const email = form.get("email");
         const password = form.get("password");
-        console.log({ email, password });
+        // console.log({ email, password });
         userLogin(email, password)
         .then(result =>{
             const user = result.user;

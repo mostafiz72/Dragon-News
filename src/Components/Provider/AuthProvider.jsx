@@ -1,13 +1,15 @@
 import React, { createContext, useEffect, useState } from 'react'
 import { app } from '../Firebase/Firebase.config';
 export const AuthContext = createContext(null)
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 const auth = getAuth(app);
+const googlePovider = new GoogleAuthProvider();
+const gitProvider = new GithubAuthProvider();
 export default function AuthProvider({ children }) {
 
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
-    console.log(user, loading);
+    // console.log(user, loading);
     
 
     const createNewUser = (email, password) =>{
@@ -35,6 +37,18 @@ export default function AuthProvider({ children }) {
         return updateProfile(auth.currentUser, updatedData);
     }
 
+    /// Sign with Google account functionality start here now**************************
+    /// Sign with Google account functionality start here now**************************
+
+    const singInWithGoogle = ()=>{
+          return signInWithPopup(auth, googlePovider)
+    }
+    /// Sign with Github account functionality start here now**************************
+
+    const singInWithGithub = ()=>{
+          return signInWithPopup(auth, gitProvider)
+    }
+
     const AuthInfo = {
         user, 
         setUser,
@@ -42,7 +56,9 @@ export default function AuthProvider({ children }) {
         singOut,
         userLogin,
         updateUserProfile,
-        loading
+        loading,
+        singInWithGoogle,
+        singInWithGithub
     }
 
     useEffect(()=>{

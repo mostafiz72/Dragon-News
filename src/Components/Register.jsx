@@ -23,11 +23,11 @@ export default function Register() {
         const email = form.get("email");
         const password = form.get("password");
 
-        console.log({ name, photo, email, password});
+        // console.log({ name, photo, email, password});
 
         createNewUser(email, password)
         .then(result => {
-            console.log("User created successfully", result);
+            // console.log("User created successfully", result);
             setUser(result.user);
             updateUserProfile({displayName: name, photoURL: photo})
             .then(result => {
